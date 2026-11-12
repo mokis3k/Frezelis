@@ -1,0 +1,1966 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101c24" />
+    <meta
+      name="description"
+      content="Zakázková výroba technických plastových dílů. CNC soustružení a frézování, výběr materiálu a technická příprava zakázky."
+    />
+    <title>Frezelis — technické plastové díly na míru</title>
+    <style>
+      :root {
+        --ink: #14232c;
+        --muted: #617078;
+        --paper: #f3f2ec;
+        --white: #fff;
+        --line: #d9ddd7;
+        --lime: #c7ef67;
+        --lime-dark: #a4d33f;
+        --night: #101c24;
+        --blue: #a4bdc4;
+        --max: 1200px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Manrope, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+      .mono,
+      .eyebrow,
+      .nav,
+      .step-no,
+      .tag {
+        font-family: "DM Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+      }
+      .wrap {
+        width: min(var(--max), calc(100% - 64px));
+        margin: auto;
+      }
+      .topline {
+        height: 37px;
+        background: #0b151b;
+        color: #a8b4b5;
+        font-size: 10px;
+      }
+      .topline .wrap {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .topline strong {
+        color: var(--lime);
+        font-weight: 500;
+      }
+      .header {
+        height: 82px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(20, 35, 44, 0.12);
+        position: absolute;
+        z-index: 3;
+        top: 37px;
+        left: 0;
+        right: 0;
+        color: #f4f4ec;
+      }
+      .header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+      }
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #738783;
+        border-radius: 50%;
+        color: var(--lime);
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: -0.04em;
+      }
+      .nav {
+        display: flex;
+        gap: 27px;
+        font-size: 10px;
+        color: #c4cecc;
+      }
+      .nav a:hover {
+        color: var(--lime);
+      }
+      .head-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .lang {
+        border: 0;
+        background: none;
+        color: #dce2de;
+        font:
+          11px "DM Mono",
+          monospace;
+        cursor: pointer;
+        padding: 8px;
+      }
+      .lang span {
+        opacity: 0.45;
+      }
+      .lang .active {
+        color: var(--lime);
+        opacity: 1;
+      }
+      .head-cta,
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 14px 18px;
+        background: var(--lime);
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 800;
+        border: 0;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .head-cta:hover,
+      .btn:hover {
+        background: #d8ff85;
+        transform: translateY(-2px);
+      }
+      .arrow {
+        font-size: 16px;
+        line-height: 10px;
+      }
+      .hero {
+        background: var(--night);
+        color: #f5f3eb;
+        padding: 184px 0 80px;
+        min-height: 680px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 82% 40%,
+            rgba(102, 135, 129, 0.18),
+            transparent 45%
+          ),
+          linear-gradient(
+            100deg,
+            transparent 50%,
+            rgba(255, 255, 255, 0.02) 50.1%,
+            transparent 50.3%
+          );
+        pointer-events: none;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        align-items: center;
+        gap: 34px;
+        position: relative;
+        z-index: 1;
+      }
+      .eyebrow {
+        font-size: 10px;
+        line-height: 1.6;
+        color: #99ada9;
+      }
+      .eyebrow i {
+        display: inline-block;
+        width: 25px;
+        height: 1px;
+        background: var(--lime);
+        vertical-align: middle;
+        margin: 0 10px 3px 0;
+      }
+      .hero h1 {
+        font-size: clamp(48px, 6.5vw, 88px);
+        line-height: 0.99;
+        letter-spacing: -0.075em;
+        margin: 23px 0 22px;
+        max-width: 660px;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--lime);
+      }
+      .hero-copy {
+        color: #bbc5c2;
+        font-size: 15px;
+        line-height: 1.8;
+        max-width: 510px;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-top: 30px;
+      }
+      .text-link {
+        color: #dce4dd;
+        font-size: 11px;
+        font-weight: 700;
+        border-bottom: 1px solid #698077;
+        padding: 9px 0;
+      }
+      .hero-foot {
+        display: flex;
+        gap: 30px;
+        margin-top: 61px;
+        color: #9eaeaa;
+        font-size: 10px;
+      }
+      .hero-foot span {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .hero-foot b {
+        width: 5px;
+        height: 5px;
+        background: var(--lime);
+        border-radius: 50%;
+      }
+      .hero-art {
+        height: 420px;
+        position: relative;
+        display: grid;
+        place-items: center;
+      }
+      .halo {
+        width: 360px;
+        height: 360px;
+        border: 1px solid rgba(195, 220, 210, 0.18);
+        border-radius: 50%;
+        position: absolute;
+      }
+      .halo:before,
+      .halo:after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(195, 220, 210, 0.11);
+        border-radius: 50%;
+        inset: 28px;
+      }
+      .halo:after {
+        inset: 67px;
+      }
+      .art-note {
+        position: absolute;
+        right: 2px;
+        bottom: 34px;
+        font:
+          9px "DM Mono",
+          monospace;
+        color: #a4b3af;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .art-index {
+        position: absolute;
+        top: 18px;
+        right: 4px;
+        font:
+          10px "DM Mono",
+          monospace;
+        color: #7f928d;
+      }
+      .part {
+        position: relative;
+        filter: drop-shadow(0 28px 35px rgba(0, 0, 0, 0.36));
+        width: min(100%, 410px);
+      }
+      .part svg {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .section {
+        padding: 110px 0;
+      }
+      .section.white {
+        background: #fbfbf7;
+      }
+      .section.dark {
+        background: #17262f;
+        color: #f4f3ed;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 35px;
+        margin-bottom: 52px;
+      }
+      .section-head h2 {
+        font-size: clamp(36px, 4.4vw, 58px);
+        line-height: 1.04;
+        letter-spacing: -0.065em;
+        margin: 14px 0 0;
+        max-width: 620px;
+      }
+      .section-head p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 360px;
+        margin: 0;
+      }
+      .dark .section-head p {
+        color: #adbbb7;
+      }
+      .kicker {
+        color: #72827e;
+      }
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .service {
+        padding: 27px 25px 28px 0;
+        min-height: 205px;
+      }
+      .service + .service {
+        border-left: 1px solid var(--line);
+        padding-left: 25px;
+      }
+      .service-num {
+        font:
+          10px "DM Mono",
+          monospace;
+        color: #85938f;
+      }
+      .service h3 {
+        font-size: 19px;
+        letter-spacing: -0.04em;
+        margin: 31px 0 10px;
+      }
+      .service p {
+        font-size: 12px;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 300px;
+        margin: 0;
+      }
+      .inline-arrow {
+        font-size: 18px;
+        color: #74847b;
+        margin-left: 7px;
+      }
+      .section-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font:
+          10px "DM Mono",
+          monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 25px;
+        border-bottom: 1px solid #96a19a;
+        padding: 8px 0;
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 13px;
+      }
+      .product {
+        background: #f0f1eb;
+        min-height: 290px;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .product-visual {
+        height: 170px;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .product-visual svg {
+        width: 155px;
+        max-height: 165px;
+        filter: drop-shadow(0 15px 13px rgba(20, 35, 44, 0.14));
+      }
+      .product .tag {
+        font-size: 9px;
+        color: #7e8b84;
+      }
+      .product h3 {
+        font-size: 15px;
+        letter-spacing: -0.035em;
+        margin: 9px 0 0;
+      }
+      .product small {
+        color: #75817b;
+        font-size: 10px;
+      }
+      .materials {
+        display: grid;
+        grid-template-columns: 0.78fr 1.22fr;
+        gap: 90px;
+        align-items: start;
+      }
+      .materials-intro h2 {
+        font-size: clamp(38px, 4.2vw, 57px);
+        line-height: 1.02;
+        letter-spacing: -0.07em;
+        margin: 15px 0 19px;
+      }
+      .materials-intro p {
+        font-size: 13px;
+        color: #adbbb7;
+        line-height: 1.8;
+        max-width: 390px;
+      }
+      .material-list {
+        border-top: 1px solid #46534f;
+      }
+      .material {
+        display: grid;
+        grid-template-columns: 65px 1fr auto;
+        gap: 14px;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #46534f;
+      }
+      .material-code {
+        font:
+          10px "DM Mono",
+          monospace;
+        color: var(--lime);
+      }
+      .material h3 {
+        font-size: 15px;
+        margin: 0 0 4px;
+      }
+      .material p {
+        font-size: 10px;
+        color: #a6b4b1;
+        margin: 0;
+        line-height: 1.65;
+      }
+      .material .plus {
+        font-size: 19px;
+        color: #92a39d;
+      }
+      .process {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .process-item {
+        padding: 20px 23px 15px;
+        border-left: 1px solid #42514d;
+        min-height: 186px;
+      }
+      .process-item:first-child {
+        padding-left: 0;
+        border: 0;
+      }
+      .step-no {
+        font-size: 10px;
+        color: var(--lime);
+      }
+      .process-item h3 {
+        font-size: 17px;
+        margin: 37px 0 10px;
+        letter-spacing: -0.04em;
+      }
+      .process-item p {
+        font-size: 11px;
+        color: #adbbb7;
+        line-height: 1.8;
+        margin: 0;
+        max-width: 230px;
+      }
+      .adv-grid {
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 70px;
+        align-items: start;
+      }
+      .adv-title h2 {
+        font-size: clamp(40px, 5vw, 66px);
+        letter-spacing: -0.07em;
+        line-height: 0.99;
+        margin: 14px 0 18px;
+      }
+      .adv-title p {
+        max-width: 425px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+      .adv-list {
+        border-top: 1px solid var(--line);
+      }
+      .advantage {
+        display: grid;
+        grid-template-columns: 38px 1fr;
+        gap: 14px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .advantage .n {
+        font:
+          10px "DM Mono",
+          monospace;
+        color: #91a09a;
+        padding-top: 3px;
+      }
+      .advantage h3 {
+        font-size: 14px;
+        margin: 0 0 6px;
+      }
+      .advantage p {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin: 0;
+      }
+      .about {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 85px;
+        align-items: start;
+      }
+      .about-mark {
+        height: 270px;
+        background: #1b2b33;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        color: var(--lime);
+        font-size: 70px;
+        font-weight: 800;
+        letter-spacing: -0.1em;
+      }
+      .about-mark:before,
+      .about-mark:after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(199, 239, 103, 0.3);
+        border-radius: 50%;
+        width: 190px;
+        height: 190px;
+      }
+      .about-mark:after {
+        width: 250px;
+        height: 250px;
+      }
+      .about-mark span {
+        position: relative;
+        z-index: 1;
+      }
+      .about-copy h2 {
+        font-size: clamp(38px, 4.4vw, 58px);
+        line-height: 1.02;
+        letter-spacing: -0.07em;
+        margin: 12px 0 20px;
+      }
+      .about-copy p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.9;
+        max-width: 600px;
+      }
+      .about-stat {
+        display: flex;
+        gap: 26px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font:
+          9px "DM Mono",
+          monospace;
+        color: #73817b;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      .contact {
+        background: var(--lime);
+        padding: 82px 0;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.88fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact h2 {
+        font-size: clamp(43px, 5.2vw, 68px);
+        line-height: 0.98;
+        letter-spacing: -0.075em;
+        margin: 15px 0 20px;
+      }
+      .contact-copy {
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 430px;
+        color: #334435;
+      }
+      .contact-note {
+        font-size: 10px;
+        color: #516344;
+        margin-top: 23px;
+        max-width: 430px;
+        line-height: 1.7;
+      }
+      .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label {
+        font:
+          9px "DM Mono",
+          monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #44553b;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(20, 35, 44, 0.35);
+        background: transparent;
+        padding: 9px 0 11px;
+        color: var(--ink);
+        outline: none;
+        border-radius: 0;
+        font-size: 12px;
+      }
+      .field textarea {
+        height: 70px;
+        resize: vertical;
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: #718166;
+      }
+      .form-bottom {
+        grid-column: 1/-1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 6px;
+      }
+      .form .btn {
+        background: var(--night);
+        color: #fff;
+      }
+      .form .btn:hover {
+        background: #293b43;
+      }
+      .form-status {
+        grid-column: 1/-1;
+        font-size: 11px;
+        line-height: 1.6;
+        color: #344334;
+        min-height: 17px;
+      }
+      .footer {
+        background: #0b151b;
+        color: #d4dbd6;
+        padding: 37px 0;
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 28px;
+        border-bottom: 1px solid #29363a;
+      }
+      .footer .brand {
+        font-size: 18px;
+      }
+      .footer-nav {
+        display: flex;
+        gap: 22px;
+        font:
+          9px "DM Mono",
+          monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #a5b1ad;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        color: #74827e;
+        font:
+          9px "DM Mono",
+          monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      .notice {
+        background: #fff4ce;
+        color: #4c431f;
+        padding: 11px 14px;
+        font-size: 11px;
+        line-height: 1.6;
+        margin-top: 11px;
+        display: none;
+      }
+      .notice.show {
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .nav {
+          gap: 14px;
+        }
+        .head-right {
+          gap: 8px;
+        }
+        .head-cta {
+          padding: 12px;
+        }
+        .hero {
+          min-height: 0;
+          padding: 160px 0 65px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .hero-art {
+          height: 340px;
+        }
+        .halo {
+          width: 290px;
+          height: 290px;
+        }
+        .section {
+          padding: 82px 0;
+        }
+        .materials {
+          gap: 45px;
+        }
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .product {
+          min-height: 260px;
+        }
+        .adv-grid {
+          gap: 40px;
+        }
+        .about {
+          gap: 48px;
+        }
+        .contact-grid {
+          gap: 45px;
+        }
+      }
+      @media (max-width: 660px) {
+        .wrap {
+          width: calc(100% - 38px);
+        }
+        .topline {
+          height: 31px;
+          font-size: 8px;
+        }
+        .header {
+          top: 31px;
+          height: 70px;
+        }
+        .nav {
+          display: none;
+        }
+        .head-right {
+          gap: 8px;
+        }
+        .head-cta {
+          font-size: 9px;
+          padding: 11px 12px;
+        }
+        .brand {
+          font-size: 18px;
+        }
+        .hero {
+          padding: 135px 0 46px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          font-size: clamp(47px, 13vw, 70px);
+          max-width: 550px;
+          margin-top: 17px;
+        }
+        .hero-copy {
+          font-size: 13px;
+          max-width: 480px;
+        }
+        .hero-actions {
+          margin-top: 24px;
+          gap: 18px;
+        }
+        .hero-foot {
+          margin-top: 35px;
+          gap: 15px;
+          flex-wrap: wrap;
+          font-size: 9px;
+        }
+        .hero-art {
+          height: 280px;
+          margin-top: 13px;
+        }
+        .halo {
+          width: 250px;
+          height: 250px;
+        }
+        .part {
+          width: min(94%, 330px);
+        }
+        .art-index {
+          top: 8px;
+        }
+        .art-note {
+          right: 0;
+          bottom: 10px;
+        }
+        .section {
+          padding: 68px 0;
+        }
+        .section-head {
+          display: block;
+          margin-bottom: 35px;
+        }
+        .section-head p {
+          margin-top: 18px;
+        }
+        .section-head h2 {
+          font-size: 38px;
+        }
+        .services {
+          grid-template-columns: 1fr;
+        }
+        .service {
+          min-height: 0;
+          padding: 20px 0;
+        }
+        .service + .service {
+          padding-left: 0;
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+        .service h3 {
+          margin: 16px 0 7px;
+        }
+        .product-grid {
+          gap: 9px;
+        }
+        .product {
+          padding: 14px;
+          min-height: 224px;
+        }
+        .product-visual {
+          height: 133px;
+        }
+        .product-visual svg {
+          width: 125px;
+          max-height: 125px;
+        }
+        .product h3 {
+          font-size: 13px;
+        }
+        .materials {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .materials-intro h2 {
+          font-size: 42px;
+        }
+        .material {
+          grid-template-columns: 49px 1fr 15px;
+          gap: 8px;
+        }
+        .process {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 25px;
+        }
+        .process-item,
+        .process-item:first-child {
+          padding: 12px 12px 5px;
+          border-left: 1px solid #42514d;
+        }
+        .process-item:nth-child(odd) {
+          padding-left: 0;
+          border-left: 0;
+        }
+        .process-item h3 {
+          margin-top: 23px;
+          font-size: 15px;
+        }
+        .adv-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .adv-title h2 {
+          font-size: 47px;
+        }
+        .about {
+          grid-template-columns: 1fr;
+          gap: 27px;
+        }
+        .about-mark {
+          height: 190px;
+        }
+        .about-copy h2 {
+          font-size: 42px;
+        }
+        .about-stat {
+          flex-wrap: wrap;
+          gap: 10px 19px;
+        }
+        .contact {
+          padding: 64px 0;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .contact h2 {
+          font-size: 50px;
+        }
+        .form {
+          gap: 13px;
+        }
+        .form-bottom {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .footer-top {
+          align-items: flex-start;
+          gap: 25px;
+          flex-direction: column;
+        }
+        .footer-nav {
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        .footer-bottom {
+          gap: 15px;
+          flex-direction: column;
+        }
+        .field input,
+        .field textarea,
+        .field select {
+          font-size: 16px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *:before,
+        *:after {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topline">
+      <div class="wrap">
+        <span data-i18n="topline">Zakázkové plastové díly pro průmysl</span
+        ><span><strong>TECHNICKÉ POLYMERY / CNC</strong></span>
+      </div>
+    </div>
+    <header class="header">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="Frezelis — úvod"
+          ><span class="brand-mark">F</span>frezelis</a
+        >
+        <nav class="nav" aria-label="Hlavní navigace">
+          <a href="#sluzby" data-i18n="navServices">Služby</a
+          ><a href="#vyrobky" data-i18n="navProducts">Výrobky</a
+          ><a href="#materialy" data-i18n="navMaterials">Materiály</a
+          ><a href="#proces" data-i18n="navProcess">Postup</a
+          ><a href="#o-nas" data-i18n="navAbout">O nás</a>
+        </nav>
+        <div class="head-right">
+          <button class="lang" id="langToggle" aria-label="Change language">
+            <span class="active" data-lang="cs">CS</span> /
+            <span data-lang="en">EN</span></button
+          ><a class="head-cta" href="#poptavka"
+            ><span data-i18n="navCta">Nezávazná poptávka</span
+            ><span class="arrow">↗</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="eyebrow">
+              <i></i
+              ><span data-i18n="heroEyebrow">Výroba podle vašeho zadání</span>
+            </div>
+            <h1 data-i18n="heroTitle">
+              Plastové díly<br />přesně <em>podle vás.</em>
+            </h1>
+            <p class="hero-copy" data-i18n="heroCopy">
+              Zakázkové technické díly z kaprolonu a dalších polymerů. Pomůžeme
+              s výběrem materiálu, technickou přípravou i výrobou v partnerském
+              závodě.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#poptavka"
+                ><span data-i18n="heroCta">Poptat výrobu</span
+                ><span class="arrow">↗</span></a
+              ><a class="text-link" href="#sluzby" data-i18n="heroMore"
+                >Prozkoumat služby ↓</a
+              >
+            </div>
+            <div class="hero-foot">
+              <span
+                ><b></b><span data-i18n="heroFact1">Výroba na míru</span></span
+              ><span
+                ><b></b
+                ><span data-i18n="heroFact2">Malé i sériové zakázky</span></span
+              >
+            </div>
+          </div>
+          <div
+            class="hero-art"
+            aria-label="Ilustrace přesně obráběného polymerového pouzdra"
+          >
+            <div class="halo"></div>
+            <div class="art-index">01 / FREZELIS</div>
+            <div class="part">
+              <svg
+                viewBox="0 0 480 360"
+                role="img"
+                aria-label="Technické plastové pouzdro"
+              >
+                <defs>
+                  <linearGradient id="shell" x1="0" x2="1" y1="0" y2="1">
+                    <stop stop-color="#f7f3dc" />
+                    <stop offset=".28" stop-color="#c7d0bd" />
+                    <stop offset=".57" stop-color="#81938b" />
+                    <stop offset=".8" stop-color="#d9dfc9" />
+                    <stop offset="1" stop-color="#7f9289" />
+                  </linearGradient>
+                  <linearGradient id="inner" x1="0" x2="1">
+                    <stop stop-color="#394c4c" />
+                    <stop offset=".5" stop-color="#0d171b" />
+                    <stop offset="1" stop-color="#70877b" />
+                  </linearGradient>
+                  <linearGradient id="side" x1="0" x2="0" y1="0" y2="1">
+                    <stop stop-color="#aebcae" />
+                    <stop offset="1" stop-color="#53665f" />
+                  </linearGradient>
+                </defs>
+                <ellipse
+                  cx="242"
+                  cy="291"
+                  rx="151"
+                  ry="30"
+                  fill="#050b0e"
+                  opacity=".55"
+                />
+                <path
+                  d="M93 120c0-39 66-70 147-70s147 31 147 70v124c0 39-66 70-147 70S93 283 93 244z"
+                  fill="url(#side)"
+                />
+                <path
+                  d="M93 120v124c0 39 66 70 147 70V50C159 50 93 81 93 120z"
+                  fill="#83958a"
+                  opacity=".6"
+                />
+                <ellipse
+                  cx="240"
+                  cy="120"
+                  rx="147"
+                  ry="70"
+                  fill="url(#shell)"
+                />
+                <ellipse cx="240" cy="120" rx="79" ry="37" fill="url(#inner)" />
+                <path
+                  d="M161 120v124c0 20 35 37 79 37s79-17 79-37V120c0 20-35 37-79 37s-79-17-79-37z"
+                  fill="#74867b"
+                  opacity=".9"
+                />
+                <ellipse cx="240" cy="244" rx="79" ry="37" fill="#77877c" />
+                <ellipse cx="240" cy="244" rx="45" ry="21" fill="#172327" />
+                <ellipse
+                  cx="240"
+                  cy="120"
+                  rx="148"
+                  ry="70"
+                  fill="none"
+                  stroke="#f9f5dd"
+                  stroke-width="3"
+                  opacity=".9"
+                />
+                <ellipse
+                  cx="240"
+                  cy="120"
+                  rx="79"
+                  ry="37"
+                  fill="none"
+                  stroke="#dce4d1"
+                  stroke-width="2"
+                />
+                <path
+                  d="M110 138v89m20-78v108m220-105v84"
+                  fill="none"
+                  stroke="#edf1db"
+                  stroke-width="3"
+                  opacity=".35"
+                />
+              </svg>
+            </div>
+            <div class="art-note" data-i18n="artNote">
+              Kaprolon · obráběný detail
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section white" id="sluzby">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow kicker">
+                <i></i
+                ><span data-i18n="servicesEyebrow">Co pro vás zajistíme</span>
+              </div>
+              <h2 data-i18n="servicesTitle">
+                Od technického zadání<br />k hotovému dílu.
+              </h2>
+            </div>
+            <p data-i18n="servicesIntro">
+              Propojíme výběr vhodného polymeru, přípravu dokumentace a
+              zakázkové obrábění do jednoho srozumitelného procesu.
+            </p>
+          </div>
+          <div class="services">
+            <article class="service">
+              <div class="service-num">01 / TECHNICKÉ PLASTY</div>
+              <h3 data-i18n="service1Title">Výroba dílů na míru</h3>
+              <p data-i18n="service1Copy">
+                Soustružené a frézované komponenty z technických polymerů podle
+                výkresu, 3D modelu, náčrtu nebo dodaného vzorku.
+              </p>
+            </article>
+            <article class="service">
+              <div class="service-num">02 / TECHNICKÁ PŘÍPRAVA</div>
+              <h3 data-i18n="service2Title">Materiál a dokumentace</h3>
+              <p data-i18n="service2Copy">
+                Pomůžeme upřesnit materiál a zadání. Pokud chybí výkres nebo 3D
+                model, můžeme s výrobním partnerem zajistit jejich přípravu.
+              </p>
+            </article>
+            <article class="service">
+              <div class="service-num">03 / CNC OBRÁBĚNÍ</div>
+              <h3 data-i18n="service3Title">Soustružení a frézování</h3>
+              <p data-i18n="service3Copy">
+                Zajišťujeme výrobu jednotlivých dílů, náhradních komponentů i
+                menších a větších výrobních sérií.
+              </p>
+            </article>
+          </div>
+          <a class="section-link" href="#poptavka"
+            ><span data-i18n="serviceLink">Popište svůj projekt</span
+            ><span>↗</span></a
+          >
+        </div>
+      </section>
+      <section class="section" id="vyrobky">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow kicker">
+                <i></i><span data-i18n="productsEyebrow">Příklady použití</span>
+              </div>
+              <h2 data-i18n="productsTitle">
+                Komponenty pro pohyb,<br />vedení i opotřebení.
+              </h2>
+            </div>
+            <p data-i18n="productsIntro">
+              Ukázky typů dílů, které lze vyrábět z technických polymerů. Každé
+              řešení přizpůsobíme výkresu a provozním podmínkám.
+            </p>
+          </div>
+          <div class="product-grid">
+            <article class="product">
+              <div class="product-visual">
+                <svg viewBox="0 0 160 150">
+                  <defs>
+                    <linearGradient id="p1" x1="0" x2="1" y1="0" y2="1">
+                      <stop stop-color="#dce0ce" />
+                      <stop offset=".5" stop-color="#96a398" />
+                      <stop offset="1" stop-color="#53645d" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M28 47c0-14 23-25 52-25s52 11 52 25v53c0 14-23 25-52 25s-52-11-52-25z"
+                    fill="url(#p1)"
+                  />
+                  <ellipse cx="80" cy="47" rx="52" ry="25" fill="#d5dac8" />
+                  <ellipse cx="80" cy="47" rx="25" ry="12" fill="#273536" />
+                  <path
+                    d="M55 47v53c0 7 11 12 25 12V35c-14 0-25 5-25 12z"
+                    fill="#f0eed9"
+                    opacity=".28"
+                  />
+                  <ellipse cx="80" cy="100" rx="25" ry="12" fill="#64756b" />
+                  <ellipse cx="80" cy="100" rx="13" ry="6" fill="#263234" />
+                </svg>
+              </div>
+              <div>
+                <span class="tag" data-i18n="prodTag1">Uložení a vedení</span>
+                <h3 data-i18n="prod1">Pouzdra a vložky</h3>
+              </div>
+            </article>
+            <article class="product">
+              <div class="product-visual">
+                <svg viewBox="0 0 160 150">
+                  <defs>
+                    <linearGradient id="p2" x1="0" x2="1" y1="0" y2="1">
+                      <stop stop-color="#edf0de" />
+                      <stop offset=".55" stop-color="#b8c5b5" />
+                      <stop offset="1" stop-color="#74877c" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M26 60c0-16 24-29 54-29s54 13 54 29v30c0 16-24 29-54 29S26 106 26 90z"
+                    fill="#7a8c82"
+                  />
+                  <ellipse cx="80" cy="60" rx="54" ry="29" fill="url(#p2)" />
+                  <ellipse cx="80" cy="60" rx="28" ry="15" fill="#344344" />
+                  <path
+                    d="M52 60v30c0 8 12 15 28 15V45c-16 0-28 7-28 15z"
+                    fill="#eff0dc"
+                    opacity=".3"
+                  />
+                  <ellipse cx="80" cy="90" rx="28" ry="15" fill="#53665d" />
+                  <ellipse cx="80" cy="90" rx="13" ry="7" fill="#222f32" />
+                </svg>
+              </div>
+              <div>
+                <span class="tag" data-i18n="prodTag2">Doprava materiálu</span>
+                <h3 data-i18n="prod2">Válečky a kladky</h3>
+              </div>
+            </article>
+            <article class="product">
+              <div class="product-visual">
+                <svg viewBox="0 0 160 150">
+                  <defs>
+                    <linearGradient id="p3" x1="0" x2="1" y1="0" y2="1">
+                      <stop stop-color="#d9dfce" />
+                      <stop offset=".48" stop-color="#a3b1a2" />
+                      <stop offset="1" stop-color="#5d7168" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M80 17 90 27 104 22 111 35 125 34 129 48 143 53 140 67 151 78 143 90 145 104 130 108 125 122 111 118 101 132 88 124 75 133 66 120 51 123 47 108 33 103 39 89 28 79 38 68 34 53 48 49 53 35 67 39 78 27z"
+                    fill="url(#p3)"
+                  />
+                  <path
+                    d="m80 39 9 9 13-4 6 12 13 2-1 13 10 8-8 11 4 13-12 6-4 13-13-3-9 10-11-8-12 5-6-12-13-1 1-13-9-9 8-10-4-13 13-5 4-13 13 3z"
+                    fill="#aebba9"
+                  />
+                  <circle cx="88" cy="82" r="23" fill="#334444" />
+                  <circle cx="88" cy="82" r="10" fill="#d9dfce" />
+                </svg>
+              </div>
+              <div>
+                <span class="tag" data-i18n="prodTag3">Přenos síly</span>
+                <h3 data-i18n="prod3">Ozubená kola</h3>
+              </div>
+            </article>
+            <article class="product">
+              <div class="product-visual">
+                <svg viewBox="0 0 160 150">
+                  <defs>
+                    <linearGradient id="p4" x1="0" x2="1" y1="0" y2="1">
+                      <stop stop-color="#e0e4d3" />
+                      <stop offset=".52" stop-color="#a9b6a8" />
+                      <stop offset="1" stop-color="#71837a" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="m38 38 82 0 0 27-82 0zM38 69h82v20H38zM38 93h82v24H38z"
+                    rx="2"
+                    fill="url(#p4)"
+                  />
+                  <path d="M38 38h82v27H38z" fill="#dfe3d1" />
+                  <path
+                    d="M38 65h82v4H38zm0 24h82v4H38z"
+                    fill="#53675e"
+                    opacity=".5"
+                  />
+                  <path
+                    d="M51 42v18m14-18v18m15-18v18m16-18v18m15-18v18"
+                    stroke="#fff"
+                    opacity=".22"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="tag" data-i18n="prodTag4">Kluzné plochy</span>
+                <h3 data-i18n="prod4">Vodicí lišty</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section dark" id="materialy">
+        <div class="wrap materials">
+          <div class="materials-intro">
+            <div class="eyebrow">
+              <i></i
+              ><span data-i18n="materialsEyebrow">Materiály podle provozu</span>
+            </div>
+            <h2 data-i18n="materialsTitle">
+              Nejdřív podmínky.<br />Potom polymer.
+            </h2>
+            <p data-i18n="materialsIntro">
+              Volba materiálu závisí na zatížení, tření, teplotě, vlhkosti i
+              kontaktu s chemikáliemi. Probereme použití dílu a společně zvolíme
+              vhodnou variantu.
+            </p>
+            <a class="section-link" href="#poptavka"
+              ><span data-i18n="materialsLink">Poradit s výběrem</span
+              ><span>↗</span></a
+            >
+          </div>
+          <div class="material-list">
+            <article class="material">
+              <span class="material-code">PA6G</span>
+              <div>
+                <h3 data-i18n="mat1">Litý polyamid / kaprolon</h3>
+                <p data-i18n="mat1copy">
+                  Pevnost, odolnost proti opotřebení a dobrá obrobitelnost.
+                </p>
+              </div>
+              <span class="plus">+</span>
+            </article>
+            <article class="material">
+              <span class="material-code">MOD</span>
+              <div>
+                <h3 data-i18n="mat2">Modifikované polyamidy</h3>
+                <p data-i18n="mat2copy">
+                  Varianty s grafitem, olejem, sklem nebo disulfidem molybdenu
+                  podle dostupnosti a zadání.
+                </p>
+              </div>
+              <span class="plus">+</span>
+            </article>
+            <article class="material">
+              <span class="material-code">POM</span>
+              <div>
+                <h3 data-i18n="mat3">Acetal a další konstrukční plasty</h3>
+                <p data-i18n="mat3copy">
+                  Materiály volíme podle rozměrové stability, tření a prostředí,
+                  ve kterém bude díl pracovat.
+                </p>
+              </div>
+              <span class="plus">+</span>
+            </article>
+            <article class="material">
+              <span class="material-code">ALT</span>
+              <div>
+                <h3 data-i18n="mat4">Další polymery a lamináty</h3>
+                <p data-i18n="mat4copy">
+                  Fluoroplasty, polyethylen, polyuretan, textit a další varianty
+                  po technickém posouzení.
+                </p>
+              </div>
+              <span class="plus">+</span>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section dark" id="proces" style="padding-top: 0">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">
+                <i></i
+                ><span data-i18n="processEyebrow">Přehledná cesta k dílu</span>
+              </div>
+              <h2 data-i18n="processTitle">Jak probíhá spolupráce</h2>
+            </div>
+            <p data-i18n="processIntro">
+              Jednáte s jedním kontaktem. Technické a výrobní kroky koordinujeme
+              s odborným partnerem.
+            </p>
+          </div>
+          <div class="process">
+            <article class="process-item">
+              <span class="step-no">KROK 01</span>
+              <h3 data-i18n="step1">Zadání</h3>
+              <p data-i18n="step1copy">
+                Pošlete výkres, model, náčrt nebo popis použití a požadovaný
+                počet kusů.
+              </p>
+            </article>
+            <article class="process-item">
+              <span class="step-no">KROK 02</span>
+              <h3 data-i18n="step2">Technické upřesnění</h3>
+              <p data-i18n="step2copy">
+                Probereme materiál, rozměry, tolerance a případnou přípravu
+                dokumentace.
+              </p>
+            </article>
+            <article class="process-item">
+              <span class="step-no">KROK 03</span>
+              <h3 data-i18n="step3">Nabídka a výroba</h3>
+              <p data-i18n="step3copy">
+                Po odsouhlasení ceny a termínu zajistíme výrobu v partnerském
+                závodě.
+              </p>
+            </article>
+            <article class="process-item">
+              <span class="step-no">KROK 04</span>
+              <h3 data-i18n="step4">Kontrola a dodání</h3>
+              <p data-i18n="step4copy">
+                Hotové díly zkontrolujeme podle zadání a domluvíme dodání v
+                České republice.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section white">
+        <div class="wrap adv-grid">
+          <div class="adv-title">
+            <div class="eyebrow kicker">
+              <i></i><span data-i18n="whyEyebrow">Frezelis v praxi</span>
+            </div>
+            <h2 data-i18n="whyTitle">Technická podpora.<br />Rozumná cena.</h2>
+            <p data-i18n="whyIntro">
+              Výrobní spolupráce v Ukrajině nám dává přístup k širokým možnostem
+              zpracování polymerů a pomáhá nabídnout cenově výhodné řešení pro
+              české firmy.
+            </p>
+          </div>
+          <div class="adv-list">
+            <article class="advantage">
+              <span class="n">01</span>
+              <div>
+                <h3 data-i18n="why1">Výhodná cena zakázkové výroby</h3>
+                <p data-i18n="why1copy">
+                  Efektivní výrobní zázemí nám umožňuje hledat
+                  konkurenceschopnou cenu podle materiálu, složitosti a
+                  velikosti série.
+                </p>
+              </div>
+            </article>
+            <article class="advantage">
+              <span class="n">02</span>
+              <div>
+                <h3 data-i18n="why2">Širší výběr materiálových variant</h3>
+                <p data-i18n="why2copy">
+                  Vedle standardních plastů můžeme ověřit také modifikované
+                  značky a nestandardní varianty materiálu.
+                </p>
+              </div>
+            </article>
+            <article class="advantage">
+              <span class="n">03</span>
+              <div>
+                <h3 data-i18n="why3">Pomoc i bez hotového výkresu</h3>
+                <p data-i18n="why3copy">
+                  Společně upřesníme zadání a podle potřeby zajistíme 3D model
+                  nebo technický výkres.
+                </p>
+              </div>
+            </article>
+            <article class="advantage">
+              <span class="n">04</span>
+              <div>
+                <h3 data-i18n="why4">Koordinace od poptávky po dodání</h3>
+                <p data-i18n="why4copy">
+                  Komunikaci, nabídku, výrobu i dodání v Česku řešíte přes jeden
+                  kontaktní bod.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="o-nas">
+        <div class="wrap about">
+          <div class="about-mark" aria-hidden="true"><span>F</span></div>
+          <div class="about-copy">
+            <div class="eyebrow kicker">
+              <i></i><span data-i18n="aboutEyebrow">O Frezelis</span>
+            </div>
+            <h2 data-i18n="aboutTitle">
+              Výroba propojená<br />technickým poradenstvím.
+            </h2>
+            <p data-i18n="aboutCopy">
+              Frezelis pomáhá českým firmám zajistit zakázkové díly z
+              technických plastů. Výrobu koordinujeme s partnerským producentem
+              na Ukrajině; zákazníkům v Česku nabízíme technickou přípravu,
+              konzultaci materiálu a podporu při realizaci zakázky.
+            </p>
+            <div class="about-stat">
+              <span data-i18n="aboutStat1">Český kontakt</span><span>×</span
+              ><span data-i18n="aboutStat2">Partnerská výroba</span
+              ><span>×</span
+              ><span data-i18n="aboutStat3">Díly podle zadání</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact" id="poptavka">
+        <div class="wrap contact-grid">
+          <div>
+            <div class="eyebrow kicker">
+              <i></i
+              ><span data-i18n="contactEyebrow">Začněme vaším zadáním</span>
+            </div>
+            <h2 data-i18n="contactTitle">Jaký díl<br />potřebujete?</h2>
+            <p class="contact-copy" data-i18n="contactCopy">
+              Pošlete základní informace a přiložte výkres nebo 3D model, pokud
+              je máte. Pokud zatím máte jen nápad, popište použití dílu.
+            </p>
+            <p class="contact-note" data-i18n="contactNote">
+              Kontaktní údaje a odesílání formuláře doplníme před veřejným
+              spuštěním webu.
+            </p>
+          </div>
+          <form class="form" id="requestForm">
+            <div class="field">
+              <label for="name" data-i18n="labelName">Jméno a firma</label
+              ><input
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="Jan Novák / Firma"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="labelEmail">E-mail</label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="jan@firma.cz"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="material" data-i18n="labelMaterial">Materiál</label
+              ><select id="material" name="material">
+                <option value="" data-i18n="choose">
+                  Vyberte nebo nechte prázdné
+                </option>
+                <option>PA6 / PA6G</option>
+                <option>POM</option>
+                <option>Textit</option>
+                <option data-i18n="otherMaterial">
+                  Jiný / potřebuji poradit
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="quantity" data-i18n="labelQuantity">Počet kusů</label
+              ><input
+                id="quantity"
+                name="quantity"
+                inputmode="numeric"
+                placeholder="Např. 100"
+              />
+            </div>
+            <div class="field full">
+              <label for="details" data-i18n="labelDetails"
+                >Popis poptávky</label
+              ><textarea
+                id="details"
+                name="details"
+                placeholder="Rozměry, použití, termín nebo jiné požadavky"
+                required
+              ></textarea>
+            </div>
+            <div class="form-bottom">
+              <button class="btn" type="submit">
+                <span data-i18n="submit">Připravit poptávku</span
+                ><span class="arrow">↗</span></button
+              ><span
+                class="mono"
+                style="font-size: 9px; color: #516344"
+                data-i18n="replyTime"
+                >Odpovíme s dalším postupem</span
+              >
+            </div>
+            <div
+              class="form-status"
+              id="formStatus"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="brand" href="#top"
+            ><span class="brand-mark">F</span>frezelis</a
+          >
+          <nav class="footer-nav">
+            <a href="#sluzby" data-i18n="navServices">Služby</a
+            ><a href="#materialy" data-i18n="navMaterials">Materiály</a
+            ><a href="#o-nas" data-i18n="navAbout">O nás</a
+            ><a href="#poptavka" data-i18n="footerContact">Kontakt</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 FREZELIS</span
+          ><span data-i18n="footerNote">Technické plastové díly na míru</span>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const copy = {
+        cs: {
+          topline: "Zakázkové plastové díly pro průmysl",
+          navServices: "Služby",
+          navProducts: "Výrobky",
+          navMaterials: "Materiály",
+          navProcess: "Postup",
+          navAbout: "O nás",
+          navCta: "Nezávazná poptávka",
+          heroEyebrow: "Výroba podle vašeho zadání",
+          heroTitle: "Plastové díly<br>přesně <em>podle vás.</em>",
+          heroCopy:
+            "Zakázkové technické díly z kaprolonu a dalších polymerů. Pomůžeme s výběrem materiálu, technickou přípravou i výrobou v partnerském závodě.",
+          heroCta: "Poptat výrobu",
+          heroMore: "Prozkoumat služby ↓",
+          heroFact1: "Výroba na míru",
+          heroFact2: "Malé i sériové zakázky",
+          artNote: "Kaprolon · obráběný detail",
+          servicesEyebrow: "Co pro vás zajistíme",
+          servicesTitle: "Od technického zadání<br>k hotovému dílu.",
+          servicesIntro:
+            "Propojíme výběr vhodného polymeru, přípravu dokumentace a zakázkové obrábění do jednoho srozumitelného procesu.",
+          service1Title: "Výroba dílů na míru",
+          service1Copy:
+            "Soustružené a frézované komponenty z technických polymerů podle výkresu, 3D modelu, náčrtu nebo dodaného vzorku.",
+          service2Title: "Materiál a dokumentace",
+          service2Copy:
+            "Pomůžeme upřesnit materiál a zadání. Pokud chybí výkres nebo 3D model, můžeme s výrobním partnerem zajistit jejich přípravu.",
+          service3Title: "Soustružení a frézování",
+          service3Copy:
+            "Zajišťujeme výrobu jednotlivých dílů, náhradních komponentů i menších a větších výrobních sérií.",
+          serviceLink: "Popište svůj projekt",
+          productsEyebrow: "Příklady použití",
+          productsTitle: "Komponenty pro pohyb,<br>vedení i opotřebení.",
+          productsIntro:
+            "Ukázky typů dílů, které lze vyrábět z technických polymerů. Každé řešení přizpůsobíme výkresu a provozním podmínkám.",
+          prodTag1: "Uložení a vedení",
+          prodTag2: "Doprava materiálu",
+          prodTag3: "Přenos síly",
+          prodTag4: "Kluzné plochy",
+          prod1: "Pouzdra a vložky",
+          prod2: "Válečky a kladky",
+          prod3: "Ozubená kola",
+          prod4: "Vodicí lišty",
+          materialsEyebrow: "Materiály podle provozu",
+          materialsTitle: "Nejdřív podmínky.<br>Potom polymer.",
+          materialsIntro:
+            "Volba materiálu závisí na zatížení, tření, teplotě, vlhkosti i kontaktu s chemikáliemi. Probereme použití dílu a společně zvolíme vhodnou variantu.",
+          materialsLink: "Poradit s výběrem",
+          mat1: "Litý polyamid / kaprolon",
+          mat1copy: "Pevnost, odolnost proti opotřebení a dobrá obrobitelnost.",
+          mat2: "Modifikované polyamidy",
+          mat2copy:
+            "Varianty s grafitem, olejem, sklem nebo disulfidem molybdenu podle dostupnosti a zadání.",
+          mat3: "Acetal a další konstrukční plasty",
+          mat3copy:
+            "Materiály volíme podle rozměrové stability, tření a prostředí, ve kterém bude díl pracovat.",
+          mat4: "Další polymery a lamináty",
+          mat4copy:
+            "Fluoroplasty, polyethylen, polyuretan, textit a další varianty po technickém posouzení.",
+          processEyebrow: "Přehledná cesta k dílu",
+          processTitle: "Jak probíhá spolupráce",
+          processIntro:
+            "Jednáte s jedním kontaktem. Technické a výrobní kroky koordinujeme s odborným partnerem.",
+          step1: "Zadání",
+          step1copy:
+            "Pošlete výkres, model, náčrt nebo popis použití a požadovaný počet kusů.",
+          step2: "Technické upřesnění",
+          step2copy:
+            "Probereme materiál, rozměry, tolerance a případnou přípravu dokumentace.",
+          step3: "Nabídka a výroba",
+          step3copy:
+            "Po odsouhlasení ceny a termínu zajistíme výrobu v partnerském závodě.",
+          step4: "Kontrola a dodání",
+          step4copy:
+            "Hotové díly zkontrolujeme podle zadání a domluvíme dodání v České republice.",
+          whyEyebrow: "Frezelis v praxi",
+          whyTitle: "Technická podpora.<br>Rozumná cena.",
+          whyIntro:
+            "Výrobní spolupráce v Ukrajině nám dává přístup k širokým možnostem zpracování polymerů a pomáhá nabídnout cenově výhodné řešení pro české firmy.",
+          why1: "Výhodná cena zakázkové výroby",
+          why1copy:
+            "Efektivní výrobní zázemí nám umožňuje hledat konkurenceschopnou cenu podle materiálu, složitosti a velikosti série.",
+          why2: "Širší výběr materiálových variant",
+          why2copy:
+            "Vedle standardních plastů můžeme ověřit také modifikované značky a nestandardní varianty materiálu.",
+          why3: "Pomoc i bez hotového výkresu",
+          why3copy:
+            "Společně upřesníme zadání a podle potřeby zajistíme 3D model nebo technický výkres.",
+          why4: "Koordinace od poptávky po dodání",
+          why4copy:
+            "Komunikaci, nabídku, výrobu i dodání v Česku řešíte přes jeden kontaktní bod.",
+          aboutEyebrow: "O Frezelis",
+          aboutTitle: "Výroba propojená<br>technickým poradenstvím.",
+          aboutCopy:
+            "Frezelis pomáhá českým firmám zajistit zakázkové díly z technických plastů. Výrobu koordinujeme s partnerským producentem na Ukrajině; zákazníkům v Česku nabízíme technickou přípravu, konzultaci materiálu a podporu při realizaci zakázky.",
+          aboutStat1: "Český kontakt",
+          aboutStat2: "Partnerská výroba",
+          aboutStat3: "Díly podle zadání",
+          contactEyebrow: "Začněme vaším zadáním",
+          contactTitle: "Jaký díl<br>potřebujete?",
+          contactCopy:
+            "Pošlete základní informace a přiložte výkres nebo 3D model, pokud je máte. Pokud zatím máte jen nápad, popište použití dílu.",
+          contactNote:
+            "Kontaktní údaje a odesílání formuláře doplníme před veřejným spuštěním webu.",
+          labelName: "Jméno a firma",
+          labelEmail: "E-mail",
+          labelMaterial: "Materiál",
+          choose: "Vyberte nebo nechte prázdné",
+          otherMaterial: "Jiný / potřebuji poradit",
+          labelQuantity: "Počet kusů",
+          labelDetails: "Popis poptávky",
+          submit: "Připravit poptávku",
+          replyTime: "Odpovíme s dalším postupem",
+          footerContact: "Kontakt",
+          footerNote: "Technické plastové díly na míru",
+          formDisabled:
+            "Formulář zatím nepředává poptávky. Kontaktní údaje doplníme před spuštěním odesílání.",
+        },
+        en: {
+          topline: "Custom plastic components for industry",
+          navServices: "Services",
+          navProducts: "Components",
+          navMaterials: "Materials",
+          navProcess: "Process",
+          navAbout: "About",
+          navCta: "Request a quote",
+          heroEyebrow: "Manufactured to your specification",
+          heroTitle: "Technical plastic<br>parts, <em>made for you.</em>",
+          heroCopy:
+            "Custom components in cast nylon and other engineering polymers. We can help with material selection, technical preparation and production through our manufacturing partner.",
+          heroCta: "Request a quote",
+          heroMore: "Explore services ↓",
+          heroFact1: "Made to specification",
+          heroFact2: "Prototype to production",
+          artNote: "Cast nylon · machined part",
+          servicesEyebrow: "What we can arrange",
+          servicesTitle: "From technical brief<br>to finished component.",
+          servicesIntro:
+            "We bring material selection, drawing preparation and custom machining together in one clear process.",
+          service1Title: "Custom plastic components",
+          service1Copy:
+            "Turned and milled engineering polymer parts made from a drawing, 3D model, sketch or supplied sample.",
+          service2Title: "Materials and technical preparation",
+          service2Copy:
+            "We help clarify the material and specification. If you do not have a drawing or 3D model, we can arrange its preparation with our production partner.",
+          service3Title: "Turning and milling",
+          service3Copy:
+            "We arrange one-off parts, replacement components and small or larger production batches.",
+          serviceLink: "Tell us about your project",
+          productsEyebrow: "Typical applications",
+          productsTitle: "Components for movement,<br>guidance and wear.",
+          productsIntro:
+            "Examples of parts that can be machined from engineering polymers. Each solution is matched to the drawing and operating conditions.",
+          prodTag1: "Bearings and guidance",
+          prodTag2: "Material handling",
+          prodTag3: "Power transmission",
+          prodTag4: "Sliding surfaces",
+          prod1: "Bushings and liners",
+          prod2: "Rollers and pulleys",
+          prod3: "Gears",
+          prod4: "Wear strips",
+          materialsEyebrow: "Materials for the application",
+          materialsTitle:
+            "Start with the conditions.<br>Then choose the polymer.",
+          materialsIntro:
+            "Material choice depends on load, friction, temperature, moisture and chemical exposure. We review how the part will be used and help select a suitable option.",
+          materialsLink: "Discuss material options",
+          mat1: "Cast polyamide / cast nylon",
+          mat1copy: "Strength, wear resistance and good machinability.",
+          mat2: "Modified polyamides",
+          mat2copy:
+            "Graphite-, oil- or glass-filled grades, or molybdenum disulphide variants, subject to availability and specification.",
+          mat3: "Acetal and other engineering plastics",
+          mat3copy:
+            "We consider dimensional stability, friction and the environment in which the component will operate.",
+          mat4: "Other polymers and laminates",
+          mat4copy:
+            "Fluoropolymers, polyethylene, polyurethane, textile laminate and other options after technical review.",
+          processEyebrow: "A clear route to your part",
+          processTitle: "How we work together",
+          processIntro:
+            "You have one point of contact. We coordinate technical and production steps with a specialist manufacturing partner.",
+          step1: "Brief",
+          step1copy:
+            "Send a drawing, model, sketch or application description, together with the required quantity.",
+          step2: "Technical review",
+          step2copy:
+            "We discuss material, dimensions, tolerances and any drawing or model preparation needed.",
+          step3: "Quote and production",
+          step3copy:
+            "Once price and lead time are agreed, we arrange production with our partner.",
+          step4: "Inspection and delivery",
+          step4copy:
+            "Finished parts are checked against the agreed brief and delivery in the Czech Republic is arranged.",
+          whyEyebrow: "The Frezelis approach",
+          whyTitle: "Engineering support.<br>Cost-effective supply.",
+          whyIntro:
+            "Working with a manufacturing partner in Ukraine gives us access to a broad range of polymer machining capabilities and helps us offer cost-effective solutions to Czech businesses.",
+          why1: "Competitive custom manufacturing",
+          why1copy:
+            "Our production setup lets us seek a competitive price based on material, complexity and batch size.",
+          why2: "More material options",
+          why2copy:
+            "Alongside standard plastics, we can check modified grades and non-standard material variants.",
+          why3: "Support before the drawing is ready",
+          why3copy:
+            "We can help clarify the brief and arrange a 3D model or technical drawing when needed.",
+          why4: "Coordination through delivery",
+          why4copy:
+            "You coordinate communication, quotation, production and delivery in Czechia through one contact.",
+          aboutEyebrow: "About Frezelis",
+          aboutTitle: "Manufacturing, supported<br>by technical advice.",
+          aboutCopy:
+            "Frezelis helps Czech businesses source custom components made from engineering plastics. We coordinate production with a manufacturing partner in Ukraine and support customers in Czechia with technical preparation, material consultation and order coordination.",
+          aboutStat1: "Czech point of contact",
+          aboutStat2: "Partner manufacturing",
+          aboutStat3: "Made to specification",
+          contactEyebrow: "Start with your brief",
+          contactTitle: "What part<br>do you need?",
+          contactCopy:
+            "Share a few details and attach a drawing or 3D model if you have one. If you only have an idea so far, describe what the part needs to do.",
+          contactNote:
+            "Contact details and form delivery will be added before the website is made public.",
+          labelName: "Name and company",
+          labelEmail: "Email",
+          labelMaterial: "Material",
+          choose: "Choose or leave blank",
+          otherMaterial: "Other / need advice",
+          labelQuantity: "Quantity",
+          labelDetails: "Project details",
+          submit: "Prepare your request",
+          replyTime: "We will confirm next steps",
+          footerContact: "Contact",
+          footerNote: "Custom technical plastic components",
+          formDisabled:
+            "This form does not send enquiries yet. Contact details will be added before submissions are enabled.",
+        },
+      };
+      let language = "cs";
+      function setLanguage(next) {
+        language = next;
+        document.documentElement.lang = next;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const value = copy[next][el.dataset.i18n];
+          if (value) el.innerHTML = value;
+        });
+        document
+          .querySelectorAll("[data-lang]")
+          .forEach((el) =>
+            el.classList.toggle("active", el.dataset.lang === next),
+          );
+        document.querySelector('meta[name="description"]').content =
+          next === "cs"
+            ? "Zakázková výroba technických plastových dílů. CNC soustružení a frézování, výběr materiálu a technická příprava zakázky."
+            : "Custom engineering plastic parts. CNC turning and milling, material selection and technical preparation.";
+        document.title =
+          next === "cs"
+            ? "Frezelis — technické plastové díly na míru"
+            : "Frezelis — custom engineering plastic parts";
+      }
+      document
+        .getElementById("langToggle")
+        .addEventListener("click", () =>
+          setLanguage(language === "cs" ? "en" : "cs"),
+        );
+      document
+        .getElementById("requestForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          document.getElementById("formStatus").textContent =
+            copy[language].formDisabled;
+        });
+    </script>
+  </body>
+</html>
