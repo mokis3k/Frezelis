@@ -32,7 +32,7 @@
         margin: 0;
         background: var(--paper);
         color: var(--ink);
-        font-family: Manrope, Arial, sans-serif;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
       a {
@@ -50,7 +50,7 @@
       .nav,
       .step-no,
       .tag {
-        font-family: "DM Mono", monospace;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         text-transform: uppercase;
         letter-spacing: 0.09em;
       }
@@ -107,9 +107,12 @@
         border: 1px solid #738783;
         border-radius: 50%;
         color: var(--lime);
-        font-family: "DM Mono", monospace;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         font-size: 11px;
         letter-spacing: -0.04em;
+      }
+      html {
+        scroll-padding-top: 110px;
       }
       .nav {
         display: flex;
@@ -130,8 +133,8 @@
         background: none;
         color: #dce2de;
         font:
-          11px "DM Mono",
-          monospace;
+          11px ui-monospace,
+          SFMono-Regular, Menlo, Consolas, monospace;
         cursor: pointer;
         padding: 8px;
       }
@@ -1215,15 +1218,15 @@
               <h3 data-i18n="service2Title">Materiál a dokumentace</h3>
               <p data-i18n="service2Copy">
                 Pomůžeme upřesnit materiál a zadání. Pokud chybí výkres nebo 3D
-                model, můžeme s výrobním partnerem zajistit jejich přípravu.
+                model, rádi s vámi probereme možnosti jejich přípravy.
               </p>
             </article>
             <article class="service">
               <div class="service-num">03 / CNC OBRÁBĚNÍ</div>
               <h3 data-i18n="service3Title">Soustružení a frézování</h3>
               <p data-i18n="service3Copy">
-                Zajišťujeme výrobu jednotlivých dílů, náhradních komponentů i
-                menších a větších výrobních sérií.
+                Zakázky posuzujeme individuálně: jednotlivé díly, náhradní
+                komponenty i série podle možností výroby.
               </p>
             </article>
           </div>
@@ -1498,22 +1501,20 @@
             <div class="eyebrow kicker">
               <i></i><span data-i18n="whyEyebrow">Frezelis v praxi</span>
             </div>
-            <h2 data-i18n="whyTitle">Technická podpora.<br />Rozumná cena.</h2>
+            <h2 data-i18n="whyTitle">Technická podpora.<br />Individuální nabídka.</h2>
             <p data-i18n="whyIntro">
-              Výrobní spolupráce v Ukrajině nám dává přístup k širokým možnostem
-              zpracování polymerů a pomáhá nabídnout cenově výhodné řešení pro
-              české firmy.
+              Připravujeme výrobní spolupráci na Ukrajině, která má českým firmám
+              nabídnout zakázkovou výrobu z technických polymerů.
             </p>
           </div>
           <div class="adv-list">
             <article class="advantage">
               <span class="n">01</span>
               <div>
-                <h3 data-i18n="why1">Výhodná cena zakázkové výroby</h3>
+                <h3 data-i18n="why1">Cena zakázkové výroby</h3>
                 <p data-i18n="why1copy">
-                  Efektivní výrobní zázemí nám umožňuje hledat
-                  konkurenceschopnou cenu podle materiálu, složitosti a
-                  velikosti série.
+                  Cenu připravujeme individuálně podle materiálu,
+                  složitosti a velikosti série.
                 </p>
               </div>
             </article>
@@ -1532,8 +1533,8 @@
               <div>
                 <h3 data-i18n="why3">Pomoc i bez hotového výkresu</h3>
                 <p data-i18n="why3copy">
-                  Společně upřesníme zadání a podle potřeby zajistíme 3D model
-                  nebo technický výkres.
+                  Společně upřesníme zadání. Pokud chybí 3D model nebo výkres,
+                  probereme možnosti jejich přípravy.
                 </p>
               </div>
             </article>
@@ -1561,8 +1562,8 @@
               Výroba propojená<br />technickým poradenstvím.
             </h2>
             <p data-i18n="aboutCopy">
-              Frezelis pomáhá českým firmám zajistit zakázkové díly z
-              technických plastů. Výrobu koordinujeme s partnerským producentem
+              Frezelis připravuje zakázkové dodávky dílů z
+              technických plastů pro české firmy. Výrobu koordinujeme s partnerským producentem
               na Ukrajině; zákazníkům v Česku nabízíme technickou přípravu,
               konzultaci materiálu a podporu při realizaci zakázky.
             </p>
@@ -1676,7 +1677,9 @@
           >
           <nav class="footer-nav">
             <a href="#sluzby" data-i18n="navServices">Služby</a
+            ><a href="#vyrobky" data-i18n="navProducts">Výrobky</a
             ><a href="#materialy" data-i18n="navMaterials">Materiály</a
+            ><a href="#proces" data-i18n="navProcess">Postup</a
             ><a href="#o-nas" data-i18n="navAbout">O nás</a
             ><a href="#poptavka" data-i18n="footerContact">Kontakt</a>
           </nav>
@@ -1715,10 +1718,10 @@
             "Soustružené a frézované komponenty z technických polymerů podle výkresu, 3D modelu, náčrtu nebo dodaného vzorku.",
           service2Title: "Materiál a dokumentace",
           service2Copy:
-            "Pomůžeme upřesnit materiál a zadání. Pokud chybí výkres nebo 3D model, můžeme s výrobním partnerem zajistit jejich přípravu.",
+            "Pomůžeme upřesnit materiál a zadání. Pokud chybí výkres nebo 3D model, rádi s vámi probereme možnosti jejich přípravy.",
           service3Title: "Soustružení a frézování",
           service3Copy:
-            "Zajišťujeme výrobu jednotlivých dílů, náhradních komponentů i menších a větších výrobních sérií.",
+            "Zakázky posuzujeme individuálně: jednotlivé díly, náhradní komponenty i série podle možností výroby.",
           serviceLink: "Popište svůj projekt",
           productsEyebrow: "Příklady použití",
           productsTitle: "Komponenty pro pohyb,<br>vedení i opotřebení.",
@@ -1765,25 +1768,25 @@
           step4copy:
             "Hotové díly zkontrolujeme podle zadání a domluvíme dodání v České republice.",
           whyEyebrow: "Frezelis v praxi",
-          whyTitle: "Technická podpora.<br>Rozumná cena.",
+          whyTitle: "Technická podpora.<br>Individuální nabídka.",
           whyIntro:
-            "Výrobní spolupráce v Ukrajině nám dává přístup k širokým možnostem zpracování polymerů a pomáhá nabídnout cenově výhodné řešení pro české firmy.",
-          why1: "Výhodná cena zakázkové výroby",
+            "Připravujeme výrobní spolupráci na Ukrajině, která má českým firmám nabídnout zakázkovou výrobu z technických polymerů.",
+          why1: "Cena zakázkové výroby",
           why1copy:
-            "Efektivní výrobní zázemí nám umožňuje hledat konkurenceschopnou cenu podle materiálu, složitosti a velikosti série.",
+            "Cenu připravujeme individuálně podle materiálu, složitosti a velikosti série.",
           why2: "Širší výběr materiálových variant",
           why2copy:
             "Vedle standardních plastů můžeme ověřit také modifikované značky a nestandardní varianty materiálu.",
           why3: "Pomoc i bez hotového výkresu",
           why3copy:
-            "Společně upřesníme zadání a podle potřeby zajistíme 3D model nebo technický výkres.",
+            "Společně upřesníme zadání. Pokud chybí 3D model nebo výkres, probereme možnosti jejich přípravy.",
           why4: "Koordinace od poptávky po dodání",
           why4copy:
             "Komunikaci, nabídku, výrobu i dodání v Česku řešíte přes jeden kontaktní bod.",
           aboutEyebrow: "O Frezelis",
           aboutTitle: "Výroba propojená<br>technickým poradenstvím.",
           aboutCopy:
-            "Frezelis pomáhá českým firmám zajistit zakázkové díly z technických plastů. Výrobu koordinujeme s partnerským producentem na Ukrajině; zákazníkům v Česku nabízíme technickou přípravu, konzultaci materiálu a podporu při realizaci zakázky.",
+            "Frezelis připravuje zakázkové dodávky dílů z technických plastů pro české firmy. Výrobu koordinujeme s partnerským producentem na Ukrajině; zákazníkům v Česku nabízíme technickou přípravu, konzultaci materiálu a podporu při realizaci zakázky.",
           aboutStat1: "Český kontakt",
           aboutStat2: "Partnerská výroba",
           aboutStat3: "Díly podle zadání",
@@ -1833,10 +1836,10 @@
             "Turned and milled engineering polymer parts made from a drawing, 3D model, sketch or supplied sample.",
           service2Title: "Materials and technical preparation",
           service2Copy:
-            "We help clarify the material and specification. If you do not have a drawing or 3D model, we can arrange its preparation with our production partner.",
+            "We help clarify the material and specification. If you do not have a drawing or 3D model, we are happy to discuss options for preparing one.",
           service3Title: "Turning and milling",
           service3Copy:
-            "We arrange one-off parts, replacement components and small or larger production batches.",
+            "We assess orders individually: one-off parts, replacement components and batches, subject to production capabilities.",
           serviceLink: "Tell us about your project",
           productsEyebrow: "Typical applications",
           productsTitle: "Components for movement,<br>guidance and wear.",
@@ -1884,25 +1887,25 @@
           step4copy:
             "Finished parts are checked against the agreed brief and delivery in the Czech Republic is arranged.",
           whyEyebrow: "The Frezelis approach",
-          whyTitle: "Engineering support.<br>Cost-effective supply.",
+          whyTitle: "Engineering support.<br>Individual quotation.",
           whyIntro:
-            "Working with a manufacturing partner in Ukraine gives us access to a broad range of polymer machining capabilities and helps us offer cost-effective solutions to Czech businesses.",
-          why1: "Competitive custom manufacturing",
+            "We are preparing a manufacturing partnership in Ukraine to offer Czech businesses custom parts made from engineering polymers.",
+          why1: "Custom manufacturing pricing",
           why1copy:
-            "Our production setup lets us seek a competitive price based on material, complexity and batch size.",
+            "We prepare the price individually based on material, complexity and batch size.",
           why2: "More material options",
           why2copy:
             "Alongside standard plastics, we can check modified grades and non-standard material variants.",
           why3: "Support before the drawing is ready",
           why3copy:
-            "We can help clarify the brief and arrange a 3D model or technical drawing when needed.",
+            "We help clarify the brief. If a 3D model or drawing is missing, we will discuss options for preparing it.",
           why4: "Coordination through delivery",
           why4copy:
             "You coordinate communication, quotation, production and delivery in Czechia through one contact.",
           aboutEyebrow: "About Frezelis",
           aboutTitle: "Manufacturing, supported<br>by technical advice.",
           aboutCopy:
-            "Frezelis helps Czech businesses source custom components made from engineering plastics. We coordinate production with a manufacturing partner in Ukraine and support customers in Czechia with technical preparation, material consultation and order coordination.",
+            "Frezelis is preparing custom supply of engineering-plastic components for Czech businesses. We coordinate production with a manufacturing partner in Ukraine and support customers in Czechia with technical preparation, material consultation and order coordination.",
           aboutStat1: "Czech point of contact",
           aboutStat2: "Partner manufacturing",
           aboutStat3: "Made to specification",
