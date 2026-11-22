@@ -22,6 +22,102 @@
         --blue: #a4bdc4;
         --max: 1200px;
       }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("fonts/manrope-latin-ext-400-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("fonts/manrope-latin-400-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("fonts/manrope-latin-ext-500-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("fonts/manrope-latin-500-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("fonts/manrope-latin-ext-700-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("fonts/manrope-latin-700-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url("fonts/manrope-latin-ext-800-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url("fonts/manrope-latin-800-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("fonts/dm-mono-latin-ext-400-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("fonts/dm-mono-latin-400-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("fonts/dm-mono-latin-ext-500-normal.woff2") format("woff2");
+        ;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("fonts/dm-mono-latin-500-normal.woff2") format("woff2");
+        ;
+      }
       * {
         box-sizing: border-box;
       }
@@ -32,7 +128,7 @@
         margin: 0;
         background: var(--paper);
         color: var(--ink);
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
       a {
@@ -50,7 +146,7 @@
       .nav,
       .step-no,
       .tag {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         text-transform: uppercase;
         letter-spacing: 0.09em;
       }
@@ -107,7 +203,7 @@
         border: 1px solid #738783;
         border-radius: 50%;
         color: var(--lime);
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         font-size: 11px;
         letter-spacing: -0.04em;
       }
@@ -133,8 +229,8 @@
         background: none;
         color: #dce2de;
         font:
-          11px ui-monospace,
-          SFMono-Regular, Menlo, Consolas, monospace;
+          11px "DM Mono",
+          ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         cursor: pointer;
         padding: 8px;
       }
@@ -771,6 +867,43 @@
       .notice.show {
         display: block;
       }
+      .menu-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #738783;
+        border-radius: 8px;
+        background: none;
+        color: #f4f4ec;
+        cursor: pointer;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .menu-toggle:focus-visible {
+        outline: 2px solid var(--lime);
+        outline-offset: 2px;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: currentColor;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+      }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
       @media (max-width: 900px) {
         .nav {
           gap: 14px;
@@ -830,8 +963,28 @@
           top: 31px;
           height: 70px;
         }
+        .menu-toggle {
+          display: inline-flex;
+        }
         .nav {
           display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          gap: 0;
+          background: #0b151b;
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          padding: 6px 19px 14px;
+          font-size: 12px;
+        }
+        .nav.open {
+          display: flex;
+        }
+        .nav a {
+          padding: 15px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .head-right {
           gap: 8px;
@@ -1040,7 +1193,7 @@
         <a class="brand" href="#top" aria-label="Frezelis — úvod"
           ><span class="brand-mark">F</span>frezelis</a
         >
-        <nav class="nav" aria-label="Hlavní navigace">
+        <nav class="nav" id="mainNav" aria-label="Hlavní navigace">
           <a href="#sluzby" data-i18n="navServices">Služby</a
           ><a href="#vyrobky" data-i18n="navProducts">Výrobky</a
           ><a href="#materialy" data-i18n="navMaterials">Materiály</a
@@ -1048,6 +1201,16 @@
           ><a href="#o-nas" data-i18n="navAbout">O nás</a>
         </nav>
         <div class="head-right">
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+          >
+            <span></span><span></span><span></span>
+          </button>
           <button class="lang" id="langToggle" aria-label="Change language">
             <span class="active" data-lang="cs">CS</span> /
             <span data-lang="en">EN</span></button
@@ -1691,6 +1854,29 @@
       </div>
     </footer>
     <script>
+      (function () {
+        const btn = document.getElementById("menuToggle");
+        const nav = document.getElementById("mainNav");
+        function setMenu(open) {
+          btn.setAttribute("aria-expanded", String(open));
+          nav.classList.toggle("open", open);
+        }
+        btn.addEventListener("click", () =>
+          setMenu(btn.getAttribute("aria-expanded") !== "true"),
+        );
+        nav.addEventListener("click", (e) => {
+          if (e.target.closest("a")) setMenu(false);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+            setMenu(false);
+            btn.focus();
+          }
+        });
+        window
+          .matchMedia("(min-width: 661px)")
+          .addEventListener("change", () => setMenu(false));
+      })();
       const copy = {
         cs: {
           topline: "Zakázkové plastové díly pro průmysl",
