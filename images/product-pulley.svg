@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="246" height="180" viewBox="0 0 246 180" role="img" aria-labelledby="pulley-title">
+  <title id="pulley-title">Пластиковый шкив с одной канавкой</title>
+  <defs>
+    <linearGradient id="pulley-flange" gradientUnits="userSpaceOnUse" x1="73" y1="0" x2="173" y2="0">
+      <stop stop-color="#aeb8a9"/>
+      <stop offset=".53" stop-color="#85968a"/>
+      <stop offset="1" stop-color="#61736a"/>
+    </linearGradient>
+    <linearGradient id="pulley-groove" gradientUnits="userSpaceOnUse" x1="110" y1="75" x2="137" y2="130">
+      <stop stop-color="#52645b"/>
+      <stop offset=".44" stop-color="#6f8176"/>
+      <stop offset="1" stop-color="#a1ae9e"/>
+    </linearGradient>
+    <linearGradient id="pulley-lower-face" gradientUnits="userSpaceOnUse" x1="84" y1="109" x2="155" y2="132">
+      <stop stop-color="#bdc6b6"/>
+      <stop offset="1" stop-color="#8e9f91"/>
+    </linearGradient>
+    <linearGradient id="pulley-top-face" gradientUnits="userSpaceOnUse" x1="112" y1="33" x2="138" y2="79">
+      <stop stop-color="#ccd1bf"/>
+      <stop offset="1" stop-color="#d8ddcb"/>
+    </linearGradient>
+    <linearGradient id="pulley-bore" gradientUnits="userSpaceOnUse" x1="105" y1="55" x2="141" y2="58">
+      <stop stop-color="#65716a"/>
+      <stop offset=".49" stop-color="#56625e"/>
+      <stop offset=".51" stop-color="#293a3a"/>
+      <stop offset="1" stop-color="#233232"/>
+    </linearGradient>
+    <filter id="pulley-soft-shadow" filterUnits="userSpaceOnUse" x="44" y="74" width="158" height="106" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <ellipse cx="123" cy="128" rx="47" ry="18" fill="#4d5b51" opacity=".23" filter="url(#pulley-soft-shadow)"/>
+  <path d="M73 110a50 23 0 0 1 100 0v9a50 23 0 0 1-100 0Z" fill="url(#pulley-flange)"/>
+  <ellipse cx="123" cy="110" rx="50" ry="23" fill="url(#pulley-lower-face)"/>
+  <path d="M76 66h94c-3 7-9 11-9 21s5 14 9 20a47 21 0 0 1-94 0c4-6 9-10 9-20s-6-14-9-21Z" fill="url(#pulley-groove)"/>
+  <path d="M73 56a50 23 0 0 1 100 0v9a50 23 0 0 1-100 0Z" fill="url(#pulley-flange)"/>
+  <ellipse cx="123" cy="56" rx="18" ry="8.6" fill="url(#pulley-bore)"/>
+  <path d="M173 56a50 23 0 1 1-100 0 50 23 0 1 1 100 0ZM141 56a18 8.6 0 1 0-36 0 18 8.6 0 1 0 36 0Z" fill="url(#pulley-top-face)" fill-rule="evenodd"/>
+</svg>
