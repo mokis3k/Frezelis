@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260" role="img" aria-labelledby="cutaway-title cutaway-desc">
+  <title id="cutaway-title">Пластиковая втулка в разрезе</title>
+  <desc id="cutaway-desc">Разрез показывает сквозное отверстие, толщину стенки и фаски. Размерные линии и дуга нанесены без числовых значений.</desc>
+  <defs>
+    <linearGradient id="cutaway-body" gradientUnits="userSpaceOnUse" x1="72" y1="96" x2="288" y2="205">
+      <stop stop-color="#b9c3b3"/>
+      <stop offset=".49" stop-color="#8b9c90"/>
+      <stop offset="1" stop-color="#566b62"/>
+    </linearGradient>
+    <linearGradient id="cutaway-rim" gradientUnits="userSpaceOnUse" x1="120" y1="34" x2="219" y2="126">
+      <stop stop-color="#c7ceba"/>
+      <stop offset="1" stop-color="#e2e5d4"/>
+    </linearGradient>
+    <linearGradient id="cutaway-bore" gradientUnits="userSpaceOnUse" x1="137" y1="65" x2="223" y2="153">
+      <stop stop-color="#576860"/>
+      <stop offset=".44" stop-color="#77897d"/>
+      <stop offset="1" stop-color="#41534c"/>
+    </linearGradient>
+    <linearGradient id="cutaway-left" gradientUnits="userSpaceOnUse" x1="110" y1="108" x2="158" y2="213">
+      <stop stop-color="#e1e4d2"/>
+      <stop offset="1" stop-color="#bec9b8"/>
+    </linearGradient>
+    <linearGradient id="cutaway-right" gradientUnits="userSpaceOnUse" x1="219" y1="108" x2="263" y2="205">
+      <stop stop-color="#cdd5c2"/>
+      <stop offset="1" stop-color="#a4b3a3"/>
+    </linearGradient>
+    <linearGradient id="cutaway-bevel" gradientUnits="userSpaceOnUse" x1="73" y1="78" x2="287" y2="78">
+      <stop stop-color="#d9deca"/>
+      <stop offset="1" stop-color="#9caa9b"/>
+    </linearGradient>
+    <linearGradient id="cutaway-lower-bevel" gradientUnits="userSpaceOnUse" x1="73" y1="164" x2="287" y2="197">
+      <stop stop-color="#8c9e90"/>
+      <stop offset="1" stop-color="#667b70"/>
+    </linearGradient>
+    <pattern id="cutaway-hatch" width="5.6" height="260" patternUnits="userSpaceOnUse" patternTransform="rotate(38) translate(-2.8 0)">
+      <path d="M2.8 0v260" stroke="#96a596" stroke-width="1"/>
+    </pattern>
+    <clipPath id="cutaway-left-hatch-clip" clipPathUnits="userSpaceOnUse">
+      <path d="M141.42 121.93L139.92 127.64L139.92 209.64L141.04 213.36L162.02 189.47L163.52 182.77L163.52 100.77L161.64 98.9Z"/>
+    </clipPath>
+    <clipPath id="cutaway-right-hatch-clip" clipPathUnits="userSpaceOnUse">
+      <rect x="190" y="0" width="170" height="260"/>
+    </clipPath>
+    <filter id="cutaway-shadow" filterUnits="userSpaceOnUse" x="34" y="123" width="292" height="136" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="11"/>
+    </filter>
+    <marker id="cutaway-dimension-arrow" viewBox="0 0 7 6" refX="6.6" refY="3" markerWidth="7" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0 0.5 6.6 3 0 5.5Z" fill="#4c6057"/>
+    </marker>
+  </defs>
+  <ellipse cx="180" cy="200" rx="104" ry="22" fill="#4d5b51" opacity=".21" filter="url(#cutaway-shadow)"/>
+  <path d="M220.8 89.58A44 20.24 0 1 0 163.52 100.77L163.52 182.77L162.02 189.47A48 22.08 0 1 1 224.5 177.27L220.8 171.58Z" fill="url(#cutaway-bore)"/>
+  <path d="M220.8 171.58A44 20.24 0 1 0 163.52 182.77L162.02 189.47A48 22.08 0 1 1 224.5 177.27Z" fill="#809185"/>
+  <path d="M287 82A107 49.22 0 0 1 279.21 100.44L279.21 182.44A107 49.22 0 0 0 287 164Z M139.92 127.64A107 49.22 0 0 1 73 82L73 164A107 49.22 0 0 0 139.92 209.64Z" fill="url(#cutaway-body)"/>
+  <path d="M282.84 177.58A107 49.22 0 0 1 279.21 182.44L276.43 186.92A104 47.84 0 0 0 279.96 182.2Z M139.92 209.64A107 49.22 0 0 1 77.16 177.58L80.04 182.2A104 47.84 0 0 0 141.04 213.36Z" fill="url(#cutaway-lower-bevel)"/>
+  <path d="M271.456 56.205A103 47.38 0 0 1 275.500 95.749L279.209 100.438A107 49.22 0 0 0 275.007 59.359Z M141.416 121.930A103 47.38 0 0 1 88.544 56.205L84.993 59.359A107 49.22 0 0 0 139.917 127.636Z" fill="url(#cutaway-bevel)"/>
+  <path d="M141.42 121.93A103 47.38 0 1 1 275.5 95.75L225.43 86.44A49 22.54 0 1 0 161.64 98.9Z" fill="url(#cutaway-rim)"/>
+  <path d="M225.43 86.44A49 22.54 0 1 0 161.64 98.9L163.52 100.77A44 20.24 0 1 1 220.8 89.58Z" fill="url(#cutaway-bevel)"/>
+  <path d="M141.42 121.93L139.92 127.64L139.92 209.64L141.04 213.36L162.02 189.47L163.52 182.77L163.52 100.77L161.64 98.9Z" fill="url(#cutaway-left)"/>
+  <path d="M275.5 95.75L279.21 100.44L279.21 182.44L276.43 186.92L224.5 177.27L220.8 171.58L220.8 89.58L225.43 86.44Z" fill="url(#cutaway-right)"/>
+  <g clip-path="url(#cutaway-right-hatch-clip)">
+    <path d="M141.42 121.93L139.92 127.64L139.92 209.64L141.04 213.36L162.02 189.47L163.52 182.77L163.52 100.77L161.64 98.9Z M275.5 95.75L279.21 100.44L279.21 182.44L276.43 186.92L224.5 177.27L220.8 171.58L220.8 89.58L225.43 86.44Z" fill="url(#cutaway-hatch)"/>
+  </g>
+  <path d="M130 65l44 44 M130 73l44 44 M130 81l44 44 M130 89l44 44 M130 97l44 44 M130 105l44 44 M130 113l44 44 M130 121l44 44 M130 129l44 44 M130 137l44 44 M130 145l44 44 M130 153l44 44 M130 161l44 44 M130 169l44 44 M130 177l44 44 M130 185l44 44 M130 193l44 44 M130 201l44 44 M130 209l44 44" clip-path="url(#cutaway-left-hatch-clip)" fill="none" stroke="#96a596" stroke-width="1"/>
+  <path d="M141.42 121.93L161.64 98.9 M225.43 86.44L275.5 95.75" fill="none" stroke="#eef0df" stroke-width="1.1" stroke-linecap="round"/>
+  <g fill="none" stroke="#4c6057" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M73 75V8 M287 75V8 M289 78h28 M289 169h28" stroke-width=".65" opacity=".72"/>
+    <path d="M163.52 190.77v17 M220.8 179.58v17 M162.02 207.47 180 187 224.5 195.27" stroke-width=".65" opacity=".66"/>
+    <g stroke-width="1.05" marker-start="url(#cutaway-dimension-arrow)" marker-end="url(#cutaway-dimension-arrow)">
+      <path d="M73 13H287"/>
+      <path d="M312 78v91"/>
+      <path d="M163.52 205.77A44 20.24 0 0 0 220.8 194.58"/>
+    </g>
+  </g>
+</svg>

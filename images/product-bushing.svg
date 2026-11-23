@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="246" height="180" viewBox="0 0 246 180" role="img" aria-labelledby="bushing-title">
+  <title id="bushing-title">Пластиковая втулка</title>
+  <defs>
+    <linearGradient id="bushing-body" gradientUnits="userSpaceOnUse" x1="77" y1="70" x2="172" y2="137">
+      <stop stop-color="#b9c1b3"/>
+      <stop offset=".58" stop-color="#8d9b90"/>
+      <stop offset="1" stop-color="#607269"/>
+    </linearGradient>
+    <linearGradient id="bushing-face" gradientUnits="userSpaceOnUse" x1="112" y1="40" x2="138" y2="88">
+      <stop stop-color="#ccd1bf"/>
+      <stop offset="1" stop-color="#d8ddcb"/>
+    </linearGradient>
+    <linearGradient id="bushing-bore" gradientUnits="userSpaceOnUse" x1="106" y1="63" x2="153" y2="66">
+      <stop stop-color="#65716a"/>
+      <stop offset=".49" stop-color="#56625e"/>
+      <stop offset=".51" stop-color="#293a3a"/>
+      <stop offset="1" stop-color="#233232"/>
+    </linearGradient>
+    <filter id="bushing-soft-shadow" filterUnits="userSpaceOnUse" x="44" y="72" width="158" height="106" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <ellipse cx="123" cy="125" rx="47" ry="19" fill="#4d5b51" opacity=".23" filter="url(#bushing-soft-shadow)"/>
+  <path d="M73 64a50 24 0 0 1 100 0v51a50 24 0 0 1-100 0Z" fill="url(#bushing-body)"/>
+  <ellipse cx="123" cy="64" rx="24" ry="11.5" fill="url(#bushing-bore)"/>
+  <path d="M173 64a50 24 0 1 1-100 0 50 24 0 1 1 100 0ZM147 64a24 11.5 0 1 0-48 0 24 11.5 0 1 0 48 0Z" fill="url(#bushing-face)" fill-rule="evenodd"/>
+</svg>

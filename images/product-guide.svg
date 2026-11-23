@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="246" height="180" viewBox="0 0 246 180" role="img" aria-labelledby="guide-title">
+  <title id="guide-title">Пластиковая П-образная направляющая</title>
+  <defs>
+    <linearGradient id="guide-channel" gradientUnits="userSpaceOnUse" x1="105" y1="83" x2="116" y2="109">
+      <stop stop-color="#9ba99b"/>
+      <stop offset="1" stop-color="#bac3b2"/>
+    </linearGradient>
+    <linearGradient id="guide-inner-wall" gradientUnits="userSpaceOnUse" x1="95" y1="81" x2="100" y2="94">
+      <stop stop-color="#a3afa0"/>
+      <stop offset="1" stop-color="#798c80"/>
+    </linearGradient>
+    <linearGradient id="guide-rail" gradientUnits="userSpaceOnUse" x1="55" y1="116" x2="190" y2="45">
+      <stop stop-color="#d9ddcb"/>
+      <stop offset="1" stop-color="#ccd2c0"/>
+    </linearGradient>
+    <linearGradient id="guide-side" gradientUnits="userSpaceOnUse" x1="90" y1="119" x2="195" y2="89">
+      <stop stop-color="#8d9e91"/>
+      <stop offset="1" stop-color="#63756c"/>
+    </linearGradient>
+    <linearGradient id="guide-end" gradientUnits="userSpaceOnUse" x1="45" y1="97" x2="85" y2="139">
+      <stop stop-color="#b5beae"/>
+      <stop offset="1" stop-color="#8f9f92"/>
+    </linearGradient>
+    <linearGradient id="guide-bore">
+      <stop stop-color="#5c6b64"/>
+      <stop offset="1" stop-color="#2c3c3a"/>
+    </linearGradient>
+    <filter id="guide-shadow" filterUnits="userSpaceOnUse" x="19" y="44" width="208" height="134" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <g filter="url(#guide-shadow)">
+    <ellipse cx="124" cy="113" rx="79" ry="22" transform="rotate(-20 124 113)" fill="#4d5b51" opacity=".24"/>
+  </g>
+  <path d="M51 112.7 167 66.7 195 81.3 79 127.3Z" fill="url(#guide-channel)"/>
+  <path d="M51 97.7 167 51.7v15L51 112.7Z" fill="url(#guide-inner-wall)"/>
+  <g fill="url(#guide-bore)">
+    <ellipse cx="96" cy="101.4" rx="5.7" ry="2.7" transform="rotate(-17 96 101.4)"/>
+    <ellipse cx="143" cy="82.8" rx="5.7" ry="2.7" transform="rotate(-17 143 82.8)"/>
+  </g>
+  <path d="M42 93 158 47 167 51.7 51 97.7Z" fill="url(#guide-rail)"/>
+  <path d="M79 112.3 195 66.3 204 71 88 117Z" fill="url(#guide-rail)"/>
+  <path d="M88 117 204 71v25L88 142Z" fill="url(#guide-side)"/>
+  <path d="M42 93 51 97.7v15l28 14.6v-15l9 4.7v25l-46-24Z" fill="url(#guide-end)" stroke="url(#guide-end)" stroke-width=".4" stroke-linejoin="round"/>
+</svg>
