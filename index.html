@@ -969,6 +969,9 @@
         }
         .nav.open {
           display: flex;
+          max-height: calc(100vh - 70px);
+          max-height: calc(100dvh - 70px);
+          overflow-y: auto;
         }
         .nav a {
           padding: 15px 0;
@@ -1193,13 +1196,13 @@
             class="menu-toggle"
             id="menuToggle"
             type="button"
-            aria-label="Menu"
+            aria-label="Nabídka"
             aria-expanded="false"
             aria-controls="mainNav"
           >
             <span></span><span></span><span></span>
           </button>
-          <button class="lang" id="langToggle" aria-label="Change language">
+          <button class="lang" id="langToggle" aria-label="Změnit jazyk">
             <span class="active" data-lang="cs">CS</span> /
             <span data-lang="en">EN</span></button
           ><a class="head-cta" href="#poptavka"
@@ -1874,6 +1877,8 @@
           navProcess: "Postup",
           navAbout: "O nás",
           navCta: "Nezávazná poptávka",
+          menuLabel: "Nabídka",
+          langLabel: "Změnit jazyk",
           heroEyebrow: "Výroba podle vašeho zadání",
           heroTitle: "Plastové díly<br>přesně <em>podle vás.</em>",
           heroCopy:
@@ -1992,6 +1997,8 @@
           navProcess: "Process",
           navAbout: "About",
           navCta: "Request a quote",
+          menuLabel: "Menu",
+          langLabel: "Change language",
           heroEyebrow: "Manufactured to your specification",
           heroTitle: "Technical plastic<br>parts, <em>made for you.</em>",
           heroCopy:
@@ -2112,6 +2119,8 @@
           const value = copy[next][el.dataset.i18n];
           if (value) el.innerHTML = value;
         });
+        document.getElementById("menuToggle").setAttribute("aria-label", copy[next].menuLabel);
+        document.getElementById("langToggle").setAttribute("aria-label", copy[next].langLabel);
         document
           .querySelectorAll("[data-lang]")
           .forEach((el) =>
