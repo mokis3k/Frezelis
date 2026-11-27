@@ -958,7 +958,7 @@
         }
         .topline {
           height: 31px;
-          font-size: 8px;
+          font-size: 10px;
         }
         .header {
           top: 31px;
@@ -1207,13 +1207,13 @@
             class="menu-toggle"
             id="menuToggle"
             type="button"
-            aria-label="Menu"
+            aria-label="Menu" data-i18n-aria="ariaMenu"
             aria-expanded="false"
             aria-controls="mainNav"
           >
             <span></span><span></span><span></span>
           </button>
-          <button class="lang" id="langToggle" aria-label="Change language">
+          <button class="lang" id="langToggle" aria-label="Změnit jazyk" data-i18n-aria="ariaLang">
             <span class="active" data-lang="cs">CS</span> /
             <span data-lang="en">EN</span></button
           ><a class="head-cta" href="#poptavka"
@@ -1856,7 +1856,7 @@
                 id="name"
                 name="name"
                 autocomplete="name"
-                placeholder="Jan Novák / Firma"
+                placeholder="Jan Novák / Firma" data-i18n-ph="phName"
                 required
               />
             </div>
@@ -1867,7 +1867,7 @@
                 name="email"
                 type="email"
                 autocomplete="email"
-                placeholder="jan@firma.cz"
+                placeholder="jan@firma.cz" data-i18n-ph="phEmail"
                 required
               />
             </div>
@@ -1891,7 +1891,7 @@
                 id="quantity"
                 name="quantity"
                 inputmode="numeric"
-                placeholder="Např. 100"
+                placeholder="Např. 100" data-i18n-ph="phQty"
               />
             </div>
             <div class="field full">
@@ -1900,7 +1900,7 @@
               ><textarea
                 id="details"
                 name="details"
-                placeholder="Rozměry, použití, termín nebo jiné požadavky"
+                placeholder="Rozměry, použití, termín nebo jiné požadavky" data-i18n-ph="phMsg"
                 required
               ></textarea>
             </div>
@@ -2209,6 +2209,10 @@
             "This form does not send enquiries yet. Contact details will be added before submissions are enabled.",
         },
       };
+      const attrCopy = {
+        cs: { phName: "Jan Novák / Firma", phEmail: "jan@firma.cz", phQty: "Např. 100", phMsg: "Rozměry, použití, termín nebo jiné požadavky", ariaMenu: "Menu", ariaLang: "Změnit jazyk" },
+        en: { phName: "John Smith / Company", phEmail: "john@company.com", phQty: "E.g. 100", phMsg: "Dimensions, application, deadline or other requirements", ariaMenu: "Menu", ariaLang: "Change language" },
+      };
       let language = "cs";
       function setLanguage(next) {
         language = next;
@@ -2216,6 +2220,12 @@
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const value = copy[next][el.dataset.i18n];
           if (value) el.innerHTML = value;
+        });
+        document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+          el.placeholder = attrCopy[next][el.dataset.i18nPh];
+        });
+        document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+          el.setAttribute("aria-label", attrCopy[next][el.dataset.i18nAria]);
         });
         document
           .querySelectorAll("[data-lang]")
